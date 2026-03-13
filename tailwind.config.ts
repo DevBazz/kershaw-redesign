@@ -9,15 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#FAF9F6",
-        surface: "#FFFFFF",
-        primary: "#C5A059", // Soft Gold
-        secondary: "#71717A",
-        border: "rgba(0, 0, 0, 0.08)",
+        background: "#0d0c0a",
+        surface: "#131210",
+        primary: "#d97706",
+        secondary: "#f5c518",
+        accent: "#fbbf24",
+        border: "rgba(255, 255, 255, 0.15)",
       },
       fontFamily: {
-        sans: ["var(--font-inter-tight)", "sans-serif"],
-        display: ["var(--font-instrument)", "serif"],
+        sans: ["var(--font-jakarta)", "sans-serif"],
+        display: ["var(--font-jakarta)", "sans-serif"],
       },
     },
   },

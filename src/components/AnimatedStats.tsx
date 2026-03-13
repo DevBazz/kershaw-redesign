@@ -84,7 +84,7 @@ export default function AnimatedStats() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-24 px-6 bg-gradient-to-b from-white to-background relative overflow-hidden">
+    <section ref={containerRef} className="py-24 px-6 bg-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(44,95,124,0.05),transparent_50%)]" />
       

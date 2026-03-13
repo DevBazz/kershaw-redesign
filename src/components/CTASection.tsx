@@ -1,122 +1,76 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import TextReveal from "./TextReveal";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function CTASection() {
-  const containerRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useGSAP(() => {
-    // Scale and fade in the CTA box
-    gsap.from(".cta-box", {
-      scale: 0.95,
-      opacity: 0,
-      duration: 1.5,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 85%",
+    gsap.fromTo(".cta-content",
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+        }
       }
-    });
+    );
 
-    // Animate decorative circles
-    gsap.from(".cta-circle", {
-      scale: 0,
-      opacity: 0,
-      duration: 1.5,
-      stagger: 0.2,
-      ease: "back.out(1.7)",
-      scrollTrigger: {
-        trigger: ".cta-box",
-        start: "top 75%",
-      }
-    });
-
-    gsap.from(".cta-desc", {
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.5,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".cta-box",
-        start: "top 75%",
-      }
-    });
-
-    gsap.from(".cta-btn-wrapper", {
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.7,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".cta-box",
-        start: "top 75%",
-      }
-    });
-
-    // Floating animation for decorative elements
-    gsap.to(".cta-circle", {
-      y: -20,
-      duration: 3,
+    gsap.to(".floating-element", {
+      y: "random(-20, 20)",
+      x: "random(-15, 15)",
+      duration: "random(3, 5)",
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
-      stagger: 0.5
+      stagger: 0.2,
     });
-
-  }, { scope: containerRef });
+  }, { scope: sectionRef });
 
   return (
-    <section ref={containerRef} className="py-24 px-6 bg-gradient-to-b from-background to-white relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.08),transparent_70%)]" />
+    <section ref={sectionRef} className="relative py-32 bg-background overflow-hidden">
+      <div className="floating-element absolute top-20 right-[10%] w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+      <div className="floating-element absolute bottom-20 left-[15%] w-80 h-80 bg-secondary/10 rounded-full blur-3xl" />
       
-      <div className="cta-box max-w-5xl mx-auto bg-gradient-to-br from-white to-secondary/5 border border-black/5 p-12 md:p-24 rounded-[3.5rem] text-center relative z-10 shadow-2xl overflow-hidden">
-        {/* Decorative animated circles */}
-        <div className="cta-circle absolute -top-32 -right-32 w-80 h-80 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl" />
-        <div className="cta-circle absolute -bottom-32 -left-32 w-80 h-80 bg-gradient-to-br from-secondary/20 to-tertiary/20 rounded-full blur-3xl" />
-        <div className="cta-circle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
-        
-        <div className="cta-content relative z-10 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 text-secondary font-bold uppercase tracking-[0.3em] text-[10px] mb-6 bg-secondary/10 px-6 py-3 rounded-full border border-secondary/20">
-            <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-            <span>Limited Time Offer</span>
-          </div>
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
+        <div className="cta-content bg-gradient-to-br from-primary to-secondary rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)]" />
           
-          <TextReveal 
-            text="Ready to find your dream home?" 
-            className="text-4xl md:text-6xl font-display text-foreground mb-8 leading-tight justify-center"
-          />
-          
-          <p className="cta-desc text-foreground/40 text-lg mb-12 max-w-xl mx-auto leading-relaxed font-medium">
-            Join thousands of satisfied homeowners who found their perfect place through S. Kershaw & Sons. Your journey begins with a single click.
-          </p>
-          
-          <div className="cta-btn-wrapper flex flex-col sm:flex-row gap-4">
-            <Link 
-              href="/listings" 
-              className="bg-primary hover:bg-tertiary text-white px-12 py-5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500 inline-flex items-center justify-center gap-2 group shadow-[0_20px_40px_rgba(44,95,124,0.3)] hover:shadow-[0_20px_50px_rgba(139,69,19,0.4)] hover:scale-105 active:scale-95"
-            >
-              <span>Browse Properties</span>
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link 
-              href="/contact" 
-              className="border-2 border-black/10 hover:border-secondary hover:bg-secondary/10 text-foreground px-12 py-5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500 inline-flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
-            >
-              <span>Schedule Consultation</span>
-            </Link>
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-8">
+              <Sparkles className="w-4 h-4 text-white" />
+              <span className="text-white text-xs font-bold uppercase tracking-wider">Exclusive Opportunity</span>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-display text-white mb-6 leading-tight">
+              Begin Your Journey to<br /><span className="italic">Exceptional Living</span>
+            </h2>
+
+            <p className="text-white/90 text-lg mb-10 max-w-2xl mx-auto">
+              Schedule a private consultation with our luxury real estate specialists and discover properties that transcend the ordinary.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="group bg-white text-primary px-10 py-5 rounded-full font-bold text-sm uppercase tracking-wider hover:scale-105 transition-all flex items-center justify-center gap-2">
+                Schedule Consultation
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="border-2 border-white text-white px-10 py-5 rounded-full font-bold text-sm uppercase tracking-wider hover:bg-white hover:text-primary transition-all">
+                View Portfolio
+              </button>
+            </div>
           </div>
         </div>
       </div>

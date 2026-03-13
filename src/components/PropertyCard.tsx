@@ -24,8 +24,8 @@ interface PropertyProps {
 }
 
 export default function PropertyCard({ id, title, location, price, image, beds, baths, area }: PropertyProps) {
-  const cardRef = useRef(null);
-  const imgRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useGSAP(() => {
     // Parallax effect on image

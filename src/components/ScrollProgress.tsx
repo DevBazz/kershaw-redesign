@@ -31,7 +31,7 @@ export default function ScrollProgress() {
       <div 
         ref={progressRef}
         className="h-full bg-gradient-to-r from-primary via-secondary to-tertiary origin-left"
-        style={{ scaleX: 0 }}
+        style={{ transform: "scaleX(0)", transformOrigin: "left" }}
       />
     </div>
   );

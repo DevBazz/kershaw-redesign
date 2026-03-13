@@ -1,16 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #FAFAFA;
-  --color-foreground: #0F172A;
-  --color-surface: #FFFFFF;
-  --color-primary: #2C5F7C;
-  --color-secondary: #D4AF37;
-  --color-tertiary: #8B4513;
-  --color-accent: #E8D5B7;
+  --color-background: #0d0c0a;
+  --color-foreground: #ffffff;
+  --color-surface: #131210;
+  --color-primary: #d97706;
+  --color-secondary: #f5c518;
+  --color-accent: #fbbf24;
   
-  --font-heading: var(--font-instrument);
-  --font-body: var(--font-inter-tight);
+  --font-heading: var(--font-jakarta);
+  --font-body: var(--font-jakarta);
   
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
@@ -19,15 +18,14 @@
 }
 
 :root {
-  --background: #FAFAFA;
-  --foreground: #0F172A;
-  --surface: #FFFFFF;
-  --primary: #2C5F7C;
-  --secondary: #D4AF37;
-  --tertiary: #8B4513;
-  --accent: #E8D5B7;
-  --font-heading: var(--font-instrument);
-  --font-body: var(--font-inter-tight);
+  --background: #0d0c0a;
+  --foreground: #ffffff;
+  --surface: #131210;
+  --primary: #d97706;
+  --secondary: #f5c518;
+  --accent: #fbbf24;
+  --font-heading: var(--font-jakarta);
+  --font-body: var(--font-jakarta);
 }
 
 html {
@@ -47,7 +45,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading), sans-serif;
-  font-weight: 400; /* Instrument Serif looks best at 400 */
+  font-weight: 700;
 }
 
 /* Components Layer Utilities */
@@ -123,6 +121,38 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Glow Halo Animation */
+@keyframes glow-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% { 
+    transform: scale(1.05);
+    opacity: 0.7;
+  }
+}
+
+.glow-halo {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 /* Animations */

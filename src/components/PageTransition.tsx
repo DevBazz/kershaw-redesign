@@ -35,7 +35,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
       <div 
         ref={overlayRef}
         className="fixed inset-0 bg-gradient-to-br from-primary via-secondary to-tertiary z-[9999] pointer-events-none"
-        style={{ scaleY: 0, transformOrigin: "bottom" }}
+        style={{ transform: "scaleY(0)", transformOrigin: "bottom" }}
       >
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="font-display text-4xl md:text-6xl text-white uppercase tracking-tighter">
